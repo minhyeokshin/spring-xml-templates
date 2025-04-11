@@ -38,7 +38,31 @@
 	1.템플릿 복사 후 필요한 경로, DB 정보만 수정
 	2.기존 프로젝트에 연동 (web.xml 또는 JavaConfig와 병행 가능)
 	3.요한 설정 파일만 부분적으로 선택 사용 가능
+---
 
+### 🔗 web.xml 연동 예시
+
+Spring XML 설정은 다음과 같이 `web.xml`에서 DispatcherServlet 및 Context 설정과 함께 연동됩니다.
+
+```xml
+<context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>/WEB-INF/spring/applicationContext.xml</param-value>
+</context-param>
+
+<listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+</listener>
+
+<servlet>
+    <servlet-name>dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/spring/dispatcher-servlet.xml</param-value>
+    </init-param>
+</servlet>
+```
  ---
  ### 📁 목적
 •	공공기관/금융/레거시 시스템 대응<br>
